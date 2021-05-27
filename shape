@@ -1,0 +1,91 @@
+package shape;
+
+
+public interface Shape {
+       public double area();
+}
+
+class Rectangle implements Shape{
+    protected double lenght;
+    protected double width;
+    
+    public Rectangle(double length,double width){
+        this.lenght = length;
+        this.width = width;
+    }
+    
+    @Override
+    public double area(){
+        return lenght*width;
+    }
+}
+
+class Circle implements Shape{
+    protected double radius;
+    
+    
+    public Circle(double radius){
+        this.radius = radius;
+        
+    }
+    
+    @Override
+    public double area(){
+        return (3.14)*radius*radius;
+    }
+}
+
+class Triangle implements Shape{
+    protected double height;
+    protected double base;
+    
+    public Triangle(double height,double base){
+        this.height = height;
+        this.base = base;
+    }
+    
+    @Override
+    public double area(){
+        return (height*base)/2;
+    }
+}
+
+class CalculateAreas {
+   Shape[] obj;
+   double[] area;
+   
+   public double[] calculatearea(Shape[] s){
+       this.obj = s;
+       area = new double[s.length];
+       int i=0;
+       for (Shape S: obj){
+           area[i] = S.area();
+           i = i+1;
+       }
+       return area;
+   }
+   
+   public Shape[] returnShape(){
+       return obj;
+   }
+   
+}
+
+package shape;
+
+public class runner {
+    public static void main(String[]arg){
+       Shape obj[] = new Shape[3];
+       obj [0] = new Circle(5.0);
+       obj [1] = new Triangle(3.9,6.2);
+       obj [2] = new Rectangle(5.2,7.3);
+       
+       CalculateAreas c= new CalculateAreas();
+       double areas[] = c.calculatearea(obj);
+       int i;
+       for (i=0;i<areas.length;i++){
+        System.out.println(areas[i]);
+    }
+    }
+    
+}
